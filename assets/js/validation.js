@@ -48,19 +48,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const formData = new FormData(form);
+
     fetch(form.action, {
       method: 'POST',
       body: formData,
       headers: { 'Accept': 'application/json' }
-    }).then(response => {
-      if (response.ok) {
-        form.reset();
-        showToast("Bedankt! Je aanvraag is verzonden.", "success");
-      } else {
-        showToast("Er ging iets mis. Probeer het opnieuw.", "error");
-      }
-    }).catch(() => {
-      showToast("Verbindingsfout. Probeer het later opnieuw.", "error");
-    });
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          form.reset();
+          showToast("Bedankt! Je aanvraag is verzonden.", "success");
+        } else if (data.errors) {
+          // Show server-side validation errors
+          for (const [key, message] of Object.entries(data.errors)) {
+            const errorEl = document.getElementById('error-' + key);
+            if (errorEl) {
+              errorEl.textContent = message;
+              errorEl.classList.remove('hidden');
+            }
+          }
+          showToast("Er zijn enkele fouten. Controleer je invoer.", "error");
+        } else {
+          showToast("Onbekende fout. Probeer opnieuw.", "error");
+        }
+      })
+      .catch(() => {
+        showToast("Verbindingsfout. Probeer het later opnieuw.", "error");
+      });
   });
 });
