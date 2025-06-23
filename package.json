@@ -3,6 +3,7 @@
     "@tailwindcss/cli": "^4.1.7",
     "@tailwindcss/vite": "^4.1.7",
     "esbuild": "^0.25.4",
+    "node-mailjet": "^6.0.8",
     "sitemap": "^8.0.0",
     "tailwindcss": "^4.1.7"
   },

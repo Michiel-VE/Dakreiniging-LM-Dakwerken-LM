@@ -48,6 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const formData = new FormData(form);
+    console.log(form.action);
+    
 
     fetch(form.action, {
       method: 'POST',

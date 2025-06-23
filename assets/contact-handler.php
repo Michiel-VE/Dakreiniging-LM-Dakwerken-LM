@@ -1,10 +1,16 @@
 <?php
+require 'vendor/autoload.php';
+
+use \Mailjet\Resources;
+
+$env = parse_ini_file('../../.env');
+
 header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: https://dakreiniginglm.be");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type");
 
-
-function sanitize($data)
-{
+function sanitize($data) {
     return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
 }
 
@@ -14,14 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Honeypot check
 if (!empty($_POST['website'])) {
     http_response_code(403);
     echo json_encode(['success' => false, 'errors' => ['global' => 'Bot detected.']]);
     exit;
 }
 
-// Sanitize and validate
 $naam = sanitize($_POST['naam'] ?? '');
 $email = filter_var($_POST['email'] ?? '', FILTER_VALIDATE_EMAIL);
 $dienst = sanitize($_POST['dienst'] ?? '');
@@ -40,31 +44,107 @@ if (!empty($errors)) {
     exit;
 }
 
-// Forward to FormSubmit using cURL
-$formSubmitUrl = 'https://formsubmit.co/e7c16f3ded6160e26886f3ee97fe1747';
 
-$postData = [
-    'naam' => $naam,
-    'email' => $_POST['email'],
-    'dienst' => $dienst,
-    'onderwerp' => $onderwerp,
-    '_captcha' => 'false',
-    '_template' => 'table',
-    '_subject' => 'Dakreiniging LM | Dakwerken LM: Nieuw bericht',
-    '_blacklist' => 'koop nu, klik hier, gratis aanbod, werk van thuis, snel geld verdienen, risicovrij, beperkte tijd, nu handelen, creditcard vereist, geen kosten, afslanken snel, wondermiddel, bezoek onze site, exclusieve deal, verdien contant, bitcoin investering, online casino, gratis proef, investeer nu, snel rijk worden'
+// Your templates (use HEREDOC syntax for readability)
+$adminTemplate = <<<HTML
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f4f8fc; color: #333; padding: 20px; }
+    .container { background-color: #ffffff; border-left: 5px solid #007BFF; padding: 20px; max-width: 600px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+    .header { border-bottom: 1px solid #e0e0e0; margin-bottom: 20px; }
+    h2 { color: #007BFF; margin: 0 0 10px; }
+    .info { margin-bottom: 15px; }
+    .label { font-weight: bold; color: #555; }
+    .value { margin-left: 5px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>Nieuw contactformulier ontvangen</h2>
+    </div>
+    <div class="info"><span class="label">Naam:</span><span class="value">{$naam}</span></div>
+    <div class="info"><span class="label">E-mailadres:</span><span class="value">{$email}</span></div>
+    <div class="info"><span class="label">Dienst:</span><span class="value">{$dienst}</span></div>
+    <div class="info"><span class="label">Vraag / Bericht:</span><br/><span class="value">{$onderwerp}</span></div>
+  </div>
+</body>
+</html>
+HTML;
+
+$userTemplate = <<<HTML
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #eef5fd; color: #333; padding: 20px; }
+    .container { background-color: #ffffff; border-left: 5px solid #007BFF; padding: 20px; max-width: 600px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+    h2 { color: #007BFF; }
+    p { line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Bedankt voor je bericht, {$naam}!</h2>
+    <p>
+      We hebben je aanvraag goed ontvangen met betrekking tot <strong>{$dienst}</strong>.
+    </p>
+    <p>
+      We zullen zo spoedig mogelijk contact met je opnemen om je verder te helpen.
+    </p>
+    <p>
+      Met vriendelijke groet,<br/>
+      Het team van Dakreiniging LM | Dakwerken LM
+    </p>
+  </div>
+</body>
+</html>
+HTML;
+
+
+$mj = new \Mailjet\Client($env['MAILJET_API_KEY'], $env['MAILJET_API_SECRET'], true, ['version' => 'v3.1']);
+
+$body = [
+  'Messages' => [
+    // Admin email
+    [
+      'From' => [
+        'Email' => "info@dakreiniginglm.be",
+        'Name' => "Dakreiniging LM"
+      ],
+      'To' => [
+        ['Email' => "info@dakreiniginglm.be", 'Name' => "Admin"]
+      ],
+      'Subject' => "Nieuw contactformulier bericht van {$naam}",
+      'HTMLPart' => $adminTemplate,
+      'CustomID' => "ContactFormAdmin"
+    ],
+    // User confirmation email
+    [
+      'From' => [
+        'Email' => "info@dakreiniginglm.be",
+        'Name' => "Dakreiniging LM"
+      ],
+      'To' => [
+        ['Email' => $email, 'Name' => $naam]
+      ],
+      'Subject' => "Bevestiging van je aanvraag bij Dakreiniging LM",
+      'HTMLPart' => $userTemplate,
+      'CustomID' => "ContactFormUser"
+    ],
+  ]
 ];
 
-$ch = curl_init($formSubmitUrl);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
+$response = $mj->post(Resources::$Email, ['body' => $body]);
 
-if ($httpCode >= 200 && $httpCode < 300) {
+if ($response->success()) {
     http_response_code(200);
     echo json_encode(['success' => true, 'message' => 'Bedankt! Je aanvraag is verzonden.']);
 } else {
     http_response_code(500);
-    echo json_encode(['success' => false, 'errors' => ['global' => 'Bericht kon niet verzonden worden. Probeer opnieuw.']]);
+    echo json_encode(['success' => false, 'errors' => ['global' => 'Er is een fout opgetreden bij het verzenden van je bericht. Probeer het later opnieuw.']]);
 }

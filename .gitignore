@@ -2,3 +2,5 @@ node_modules
 robots.txt
 sitemap.xml
 .htaccess
+.env
+vendor
