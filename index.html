@@ -53,13 +53,14 @@
   </script>
 </head>
 
-<body class="bg-white text-gray-900 sm:text-justify">
+<body class="bg-white text-gray-900">
 
   <!-- Navigation -->
   <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/70 shadow-md border-b border-blue-500"
     role="navigation">
     <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-5">
-      <a href="/" class="text-blue-900 text-2xl font-bold tracking-tight">Dakreiniging LM | Dakwerken LM</a>
+      <a href="/" class="text-blue-900 text-2xl font-bold tracking-tight">Dakreiniging LM <span
+          class="hidden md:inline">&VerticalBar;</span><span class="block md:ml-2 md:inline">Dakwerken LM</span></a>
       <button id="navToggle" aria-label="Toggle navigation" aria-expanded="false"
         class="md:hidden flex flex-col justify-center items-center space-y-1 focus:outline-none">
         <span class="w-6 h-0.5 bg-blue-800 transition-transform origin-center"></span>
@@ -96,50 +97,84 @@
               class="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
           </a>
         </li>
+        <li role="menuitem">
+          <a href="/#recensies" class="group relative inline-block pb-1">
+            <span class="group-hover:text-blue-900 transition">Recensies</span>
+            <span
+              class="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+        </li>
       </ul>
 
     </div>
   </nav>
   <main role="main">
     <!-- Hero -->
-    <section id="home" class="relative h-screen bg-cover bg-top bg-fixed"
-      style="background-image: url('assets/img/dak.webp');">
-      <div class="absolute inset-0 bg-white/60"></div>
-      <div class="relative h-full flex items-center px-6 sm:px-24">
-        <div class="text-left z-10">
-          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 mb-2">Van dakreiniging tot herstelling
+    <section id="home" class="relative h-screen bg-cover bg-fixed overflow-hidden">
+      <div class="absolute inset-0 bg-white/30 z-0"></div>
+
+      <div id="carousel-reiniging"
+        class="absolute inset-0 z-[-2] bg-cover bg-top bg-fixed transition-opacity duration-1000 ease-in-out"></div>
+      <div id="carousel-herstelling"
+        class="absolute inset-0 z-[-1] bg-cover bg-top bg-fixed transition-opacity duration-1000 ease-in-out"></div>
+
+      <div class="relative h-full flex items-center justify-center px-6 sm:px-24 z-10">
+        <div class="bg-white/60 backdrop-blur-sm p-6 sm:p-10 rounded-lg shadow-lg max-w-xl">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 mb-4 text-center">
+            Uw dakspecialist in regio Groot-Leuven
           </h1>
-          <h2 class="text-xl sm:text-2xl md:text-3xl text-blue-800 font-medium">één team, één familie</h2>
+          <h2 class="text-xl sm:text-2xl md:text-3xl text-blue-800 font-medium mb-8">
+            Voor het reinigen, herstellen en onderhouden van alle types daken.
+          </h2>
+          <p class="text-md sm:text-xl md:text-2xl text-blue-800 text-center">
+            <span class="block md:inline"><i class="fas fa-phone mr-2"></i>0473 67 19 44</span>
+            <span class="hidden md:inline">&VerticalBar;</span>
+            <span><i class="fas fa-envelope mr-2"></i>info@dakreiniginglm.be</span>
+
+          </p>
         </div>
       </div>
     </section>
 
+
+
+
     <!-- About Us -->
     <section id="over-ons" class="bg-white py-16 sm:py-24 px-6">
       <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
           <div>
             <h2 class="text-3xl sm:text-4xl font-bold text-blue-900 mb-6">Wie zijn wij?</h2>
-            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-              Dakwerken LM is een echt familiebedrijf, gerund door vader Philippe en zoon Lander. Met jarenlange
-              ervaring
-              en een hart voor vakmanschap staan wij elke dag samen op de werf om onze klanten te helpen met zorg,
-              kwaliteit en vertrouwen.
-            </p>
-            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-              Wij geloven in duidelijke communicatie, correcte afspraken en duurzame oplossingen. Of het nu gaat om
-              dakherstellingen, dakreiniging of onderhoud &dash; uw dak is bij ons in goede handen.
-            </p>
+            <div class="text-lg text-gray-700 grid gap-y-3 leading-relaxed">
+              <p>
+                Dakwerken LM is een echt familiebedrijf, geleid door vader Philippe en zoon Lander. Met jarenlange
+                ervaring en een passie voor vakmanschap staan wij dagelijks samen op de werf. Wij helpen onze klanten
+                met
+                zorg, kwaliteit en vertrouwen.
+              </p>
+              <p>
+                Heldere communicatie, correcte afspraken en duurzame oplossingen vormen de kern van onze werking. Of het
+                nu gaat om dakherstellingen, dakreiniging of regelmatig onderhoud: bij Dakwerken LM is uw dak in ervaren
+                en betrouwbare handen.
+              </p>
+              <p>
+                Als vader en zoon zijn wij gespecialiseerd in het opsporen en herstellen van zowel kleine als grote
+                lekkages &dash; op platte én hellende daken. Alle herstellingen worden door ons persoonlijk uitgevoerd,
+                zonder tussenpersonen. In veel gevallen is een herstelling een slimme en voordelige keuze. Het is vaak
+                aanzienlijk goedkoper dan een volledige vernieuwing van uw dak, en kan de levensduur met vele jaren
+                verlengen.
+              </p>
+            </div>
           </div>
           <div class="grid grid-cols-2 gap-4">
             <img src="assets/img/actie.webp" alt="Dakwerken actie" width="800" height="600" loading="lazy"
               decoding="async" class="rounded-lg shadow-md object-cover aspect-[4/3]">
             <img src="assets/img/auto_logo.webp" alt="Lander aan het klaarmaken" width="800" loading="lazy"
               decoding="async" height="600" class="rounded-lg shadow-md object-cover aspect-[4/3]">
-            <img src="assets/img/huis.webp" alt="Reinigen van voegen" width="800" height="600" loading="lazy"
-              decoding="async" class="rounded-lg shadow-md object-cover aspect-[4/3] hidden md:block">
+            <img src="assets/img/herstelling.webp" alt="Philippe voert een herstelling uit" width="800" height="600"
+              loading="lazy" decoding="async" class="rounded-lg shadow-md object-cover aspect-[4/3]">
             <img src="assets/img/dakgoot.webp" alt="Dakreiniging" width="800" height="600" loading="lazy"
-              decoding="async" class="rounded-lg shadow-md object-cover aspect-[4/3] hidden md:block">
+              decoding="async" class="rounded-lg shadow-md object-cover aspect-[4/3]">
           </div>
         </div>
       </div>
@@ -149,41 +184,49 @@
 
     <!-- Diensten -->
     <section id="diensten" class="py-24 relative min-h-screen bg-cover bg-top bg-fixed md:px-12"
-      style="background-image: url('assets/img/dak.webp');">
+      style="background-image: url('assets/img/dak_reiniging.webp');">
       <div class="absolute inset-0 bg-white/60 z-0"></div>
       <div class="relative mx-auto px-6 text-center z-10">
         <h2 class="text-4xl font-bold text-blue-800 mb-12 leading-tight">Onze Diensten</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          <div role="button" tabindex="0" data-service="dakherstelling"
+
+          <div role="button" tabindex="0" data-service="Dakherstellingen - Hellende daken"
             class="rounded-xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 group cursor-pointer card focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <img src="assets/img/diensten/herstelling.webp" alt="Dakherstellingen" loading="lazy" decoding="async"
+            <img src="assets/img/diensten/herstelling.webp" alt="Dakherstellingen hellende daken" loading="lazy"
+              decoding="async"
               class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" />
             <div class="p-6 bg-blue-50 text-black h-[calc(100%-16rem)] duration-500 hover:text-gray-700">
-              <h3 class="text-2xl font-semibold mb-2">Dakherstellingen</h3>
-              <p class="text-base">Herstelling van daken, goten, schoorstenen en Velux-ramen.</p>
-              <p class="inline-flex items-center mt-4 text-sm underline">Lees meer</p>
+              <h3 class="text-xl font-semibold mb-2">Dakherstellingen - Hellende daken</h3>
+              <p>Herstelling van daken, goten, schoorstenen en Velux-ramen.</p>
+              <p class="inline-flex items-center mt-4 text-sm underline">Lees meer<i
+                  class="fas fa-arrow-right md:mt-1 ml-2"></i></p>
             </div>
           </div>
 
-          <div role="button" tabindex="0" data-service="dakherstelling"
+          <div role="button" tabindex="0" data-service="Dakherstellingen - Platte daken"
             class="rounded-xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 group cursor-pointer card focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <img src="assets/img/diensten/reiniging.webp" alt="Dakreiniging & Ontmossen" loading="lazy" decoding="async"
+            <img src="assets/img/diensten/plat_dak.webp" alt="Dakherstellingen platte daken" loading="lazy"
+              decoding="async"
               class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110" />
             <div class="p-6 bg-blue-50 text-black h-[calc(100%-16rem)] duration-500 hover:text-gray-700">
-              <h3 class="text-2xl font-semibold mb-2">Dakreiniging & Ontmossen</h3>
-              <p class="text-base">Reinigen, ontmossen en coaten van hellende daken.</p>
-              <p class="inline-flex items-center mt-4 text-sm underline">Lees meer</p>
-            </div>
-          </div>
-
-          <div role="button" tabindex="0" data-service="dakherstelling"
-            class="rounded-xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 group cursor-pointer card focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <img src="assets/img/diensten/plat_dak.webp" alt="Onderhoud Platte Daken" loading="lazy" decoding="async"
-              class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110" />
-            <div class="p-6 bg-blue-50 text-black h-[calc(100%-16rem)] duration-500 hover:text-gray-700">
-              <h3 class="text-2xl font-semibold mb-2">Onderhoud Platte Daken</h3>
+              <h3 class="text-xl font-semibold mb-2">Dakherstellingen - Platte daken</h3>
               <p class="text-base">Onderhoud en inspectie van platte daken voor bescherming.</p>
-              <p class="inline-flex items-center mt-4 text-sm underline">Lees meer</p>
+              <p class="inline-flex items-center mt-4 text-sm underline">Lees meer<i
+                  class="fas fa-arrow-right md:mt-1 ml-2"></i></p>
+            </div>
+          </div>
+
+          <div role="button" tabindex="0" data-service="Dakreiniging & Ontmossen"
+            class="rounded-xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 group cursor-pointer card focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <img src="assets/img/diensten/reiniging.webp" alt="Dakreiniging &amp; Ontmossen" loading="lazy"
+              decoding="async"
+              class="w-full h-64 object-cover object-top transition-transform duration-500 group-hover:scale-110" />
+            <div class="p-6 bg-blue-50 text-black h-[calc(100%-16rem)] duration-500 hover:text-gray-700">
+              <h3 class="text-xl font-semibold mb-2">Dakreiniging & Ontmossen</h3>
+              <p>Reinigen, ontmossen en coaten van hellende daken.</p>
+              <p class="inline-flex items-center mt-4 text-sm underline">Lees meer <i
+                  class="fas fa-arrow-right md:mt-1 ml-2"></i>
+              </p>
             </div>
           </div>
         </div>
@@ -195,25 +238,17 @@
       aria-describedby="modalDescription"
       class="fixed px-12 sm:px-0 -inset-4 bg-black/80 flex justify-center items-center opacity-0 translate-y-4 pointer-events-none transition-all duration-500 ease-out z-50">
       <div
-        class="bg-white p-6 rounded-xl w-full max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-4xl h-auto sm:h-[80vh] overflow-hidden relative flex flex-col shadow-lg">
+        class="bg-white p-6 rounded-xl w-full max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-4xl h-[90vh] overflow-hidden relative flex flex-col shadow-lg">
         <button id="closeModal"
           class="absolute top-4 right-4 text-3xl font-bold text-gray-600 hover:text-gray-800 transition"
           aria-label="Close Modal">
           &times;
         </button>
 
-        <h2 id="modalTitle" class="text-3xl sm:text-4xl font-bold text-blue-800 mb-6">Info Modal</h2>
+        <h2 id="modalTitle" class="text-3xl sm:text-4xl font-bold text-blue-800 mb-6 mr-4">Info Modal</h2>
 
-        <div class="overflow-y-auto pr-2 sm:mx-6 flex-1 min-h-0 max-h-[60vh]">
+        <div class="overflow-y-auto pr-2 sm:mx-6 flex-1 min-h-0 max-h-[70vh]">
           <p id="modalDescription" class="text-lg text-gray-700 mb-6 leading-relaxed"></p>
-          <div id="modalServices" class="mb-6">
-            <h3 class="text-2xl font-semibold text-blue-700 mb-2">Wat wij doen:</h3>
-            <ul class="list-disc list-inside space-y-2 text-gray-800" id="modalServicesList"></ul>
-          </div>
-          <div id="modalExtraInfo">
-            <h3 class="text-2xl font-semibold text-blue-700 mb-2">Extra informatie:</h3>
-            <ul class="list-disc list-inside space-y-2 text-gray-800" id="modalExtraInfoList"></ul>
-          </div>
         </div>
         <button id="closeModalBottom"
           class="absolute bottom-4 right-4 bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition hidden sm:block"
@@ -222,78 +257,148 @@
         </button>
       </div>
     </div>
-  </main>
 
 
 
 
-  <!-- Contact -->
-  <section id="contact" class="py-24 bg-white">
-    <div class="max-w-3xl mx-auto px-6">
-      <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">Contacteer Ons</h2>
-      <form id="contactForm" action="/assets/contact-handler.php" method="POST"
-        class="bg-white p-8 rounded-lg shadow-lg space-y-6" novalidate>
-        <!-- Honeypot -->
-        <div aria-hidden="true" class="absolute left-[-9999px]">
-          <label for="website" class="sr-only">Laat dit veld leeg</label>
-          <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
-        </div>
+    <!-- Contact -->
+    <section id="contact" class="py-24 bg-white">
+      <div class="max-w-3xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">Contacteer Ons</h2>
+        <form id="contactForm" action="/assets/contact-handler.php" method="POST"
+          class="bg-white p-8 rounded-lg shadow-lg space-y-6" novalidate>
+          <!-- Honeypot -->
+          <div aria-hidden="true" class="absolute left-[-9999px]">
+            <label for="website" class="sr-only">Laat dit veld leeg</label>
+            <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+          </div>
 
-        <!-- Extra settings -->
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_subject" value="Dakreiniging LM | Dakwerken LM: Nieuw bericht">
-        <input type="hidden" name="_blacklist"
-          value="koop nu, klik hier, gratis aanbod, werk van thuis, snel geld verdienen, risicovrij, beperkte tijd, nu handelen, creditcard vereist, geen kosten, afslanken snel, wondermiddel, bezoek onze site, exclusieve deal, verdien contant, bitcoin investering, online casino, gratis proef, investeer nu, snel rijk worden">
+          <!-- Extra settings -->
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_subject" value="Dakreiniging LM | Dakwerken LM: Nieuw bericht">
+          <input type="hidden" name="_blacklist"
+            value="koop nu, klik hier, gratis aanbod, werk van thuis, snel geld verdienen, risicovrij, beperkte tijd, nu handelen, creditcard vereist, geen kosten, afslanken snel, wondermiddel, bezoek onze site, exclusieve deal, verdien contant, bitcoin investering, online casino, gratis proef, investeer nu, snel rijk worden">
 
-        <!-- Naam -->
-        <div>
-          <label for="naam" class="block text-blue-800 font-semibold">Naam</label>
-          <input type="text" id="naam" name="naam" required class="w-full border border-gray-300 p-3 rounded-lg mt-2">
-          <p class="text-sm text-red-600 mt-1 hidden" id="error-naam">Naam is verplicht.</p>
-        </div>
+          <!-- Naam -->
+          <div>
+            <label for="naam" class="block text-blue-800 font-semibold">Naam</label>
+            <input type="text" id="naam" name="naam" required class="w-full border border-gray-300 p-3 rounded-lg mt-2">
+            <p class="text-sm text-red-600 mt-1 hidden" id="error-naam">Naam is verplicht.</p>
+          </div>
 
-        <!-- E-mail -->
-        <div>
-          <label for="email" class="block text-blue-800 font-semibold">E-mail</label>
-          <input type="email" id="email" name="email" required
-            class="w-full border border-gray-300 p-3 rounded-lg mt-2">
-          <p class="text-sm text-red-600 mt-1 hidden" id="error-email">Voer een geldig e-mailadres in.</p>
-        </div>
+          <!-- E-mail -->
+          <div>
+            <label for="email" class="block text-blue-800 font-semibold">E-mail</label>
+            <input type="email" id="email" name="email" required
+              class="w-full border border-gray-300 p-3 rounded-lg mt-2">
+            <p class="text-sm text-red-600 mt-1 hidden" id="error-email">Voer een geldig e-mailadres in.</p>
+          </div>
 
-        <!-- Dienst -->
-        <div>
-          <label for="dienst" class="block text-blue-800 font-semibold">Type dienst</label>
-          <select id="dienst" name="dienst" required class="w-full border border-gray-300 p-3 rounded-lg mt-2">
-            <option value="">-- Kies een dienst --</option>
-            <option value="Herstelling">Herstelling</option>
-            <option value="Reiniging">Reiniging</option>
-          </select>
-          <p class="text-sm text-red-600 mt-1 hidden" id="error-dienst">Selecteer een dienst.</p>
-        </div>
+          <!-- Dienst -->
+          <div>
+            <label for="dienst" class="block text-blue-800 font-semibold">Type dienst</label>
+            <select id="dienst" name="dienst" required class="w-full border border-gray-300 p-3 rounded-lg mt-2">
+              <option value="">-- Kies een dienst --</option>
+              <option value="Herstelling">Herstelling</option>
+              <option value="Reiniging">Reiniging</option>
+            </select>
+            <p class="text-sm text-red-600 mt-1 hidden" id="error-dienst">Selecteer een dienst.</p>
+          </div>
 
-        <!-- Onderwerp -->
-        <div>
-          <label for="onderwerp" class="block text-blue-800 font-semibold">Details</label>
-          <textarea id="onderwerp" name="onderwerp" rows="4" required
-            class="w-full border border-gray-300 p-3 rounded-lg mt-2"></textarea>
-          <p class="text-sm text-red-600 mt-1 hidden" id="error-onderwerp">Geef een korte beschrijving van uw aanvraag.
+          <!-- Onderwerp -->
+          <div>
+            <label for="onderwerp" class="block text-blue-800 font-semibold">Details</label>
+            <textarea id="onderwerp" name="onderwerp" rows="4" required
+              class="w-full border border-gray-300 p-3 rounded-lg mt-2"></textarea>
+            <p class="text-sm text-red-600 mt-1 hidden" id="error-onderwerp">Geef een korte beschrijving van uw
+              aanvraag.
+            </p>
+          </div>
+          <div class="flex justify-end">
+            <button type="submit"
+              class="bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition cursor-pointer">
+              <span class="mr-3">Verzenden</span><span><i class="fas fa-paper-plane"></i></span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <div id="toast"
+      class="fixed top-4 right-4 px-6 py-4 rounded-lg shadow-lg z-50 text-white transform opacity-0 transition-all duration-500 ease-in-out translate-x-full">
+      <span id="toast-message"></span>
+    </div>
+
+    <section id="recensies" class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 mb-16 pt-24">
+      <h2 class="text-4xl font-semibold text-center text-gray-800 mb-12">Recensies</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg">
+          <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Ruddy" alt="Ruddy Tienen"
+            class="w-24 h-24 rounded-full object-cover mb-4 ring-4 ring-purple-300">
+          <h3 class="text-xl font-medium text-gray-900 mb-2">Ruddy Tienen</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Mijn goot en afvoerbuizen zaten verstopt en ik kreeg lekkages. Na het reinigen van mijn goten door
+            Dakreiniging LM kan het water terug vloeiend weg, en zijn de lekkages verleden tijd. Had ik dit maar vroeger
+            gedaan, nu heb ik een jaarcontract genomen en bellen de heren mij na dat de blaren zijn gevallen. Zeer
+            gemakkelijk en handig, minder zorgen voor mij. Heel blij met deze keuze!
           </p>
         </div>
-        <div class="flex justify-end">
-          <button type="submit"
-            class="bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition cursor-pointer">
-            Verzenden
-          </button>
-        </div>
-      </form>
-    </div>
-  </section>
 
-  <div id="toast"
-    class="fixed top-4 right-4 px-6 py-4 rounded-lg shadow-lg z-50 text-white transform opacity-0 transition-all duration-500 ease-in-out translate-x-full">
-    <span id="toast-message"></span>
-  </div>
+        <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg">
+          <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Jos" alt="Jos Rostelaar"
+            class="w-24 h-24 rounded-full object-cover mb-4 ring-4 ring-purple-300">
+          <h3 class="text-xl font-medium text-gray-900 mb-2">Jos Rostelaar</h3>
+          <p class="text-gray-600 leading-relaxed">
+            De goot was aan vervanging toe, de familiebedrijf Dakreiniging LM hebben heel mooi werk geleverd en bovenal
+            ik zit weer droog.
+          </p>
+        </div>
+
+        <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg">
+          <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Ine" alt="Ine Rostelaar"
+            class="w-24 h-24 rounded-full object-cover mb-4 ring-4 ring-purple-300">
+          <h3 class="text-xl font-medium text-gray-900 mb-2">Ine Rostelaar</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Mijn dak begon veel aanslag te krijgen en vol mospokken te staan. Dankzij hun diensten lijkt mijn dak weer
+            als nieuw! Mijn man en ik zijn heel tevreden over het werk.
+          </p>
+        </div>
+
+        <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg">
+          <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Jan" alt="Jan Holsbeek"
+            class="w-24 h-24 rounded-full object-cover mb-4 ring-4 ring-purple-300">
+          <h3 class="text-xl font-medium text-gray-900 mb-2">Jan Holsbeek</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Mijn gevel zag groen en er kwam water infiltratie binnen. Dankzij de firma is het probleem opgelost. Zeer
+            tevreden over hun diensten!
+          </p>
+        </div>
+
+        <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg">
+          <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Els" alt="Els Bierbeek"
+            class="w-24 h-24 rounded-full object-cover mb-4 ring-4 ring-purple-300">
+          <h3 class="text-xl font-medium text-gray-900 mb-2">Els Bierbeek</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Het lood aan mijn schoorsteen was gescheurd. Dit had ik niet door de heren hadden mij hier op attent gemaakt
+            toen dat ze mijn goten kwamen reinigen. Ze hebben de lekkages voorkomen. Hier ben ik heel dankbaar voor!
+          </p>
+        </div>
+
+        <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg">
+          <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Wouter" alt="Wouter Leuven"
+            class="w-24 h-24 rounded-full object-cover mb-4 ring-4 ring-purple-300">
+          <h3 class="text-xl font-medium text-gray-900 mb-2">Wouter Leuven</h3>
+          <p class="text-gray-600 leading-relaxed">
+            De tussen goot van mijn dak lekte. De heren hebben dit op een zeer professionele en korte termijn opgelost.
+            Ik raad ze zeker aan!
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
 
 
 
@@ -309,6 +414,7 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm md:text-base border-t border-blue-300 pt-8">
         <div class="text-center">
+          <h4 class="font-bold text-lg">Dakwerken LM</h4>
           <h4 class="font-bold text-lg mb-2">Dakreiniging LM</h4>
           <p>&copy; 2025 Alle rechten voorbehouden</p>
           <a href="privacy.html" class="underline hover:text-blue-200 transition">Privacy Policy</a>
@@ -316,7 +422,7 @@
         <div class="text-center">
           <h4 class="font-semibold mb-2">Contact</h4>
           <p>info@dakreiniginglm.be</p>
-          <p><a href="tel:+32473671944">&plus;32 473 67 19 44</a></p>
+          <p><a href="tel:+32473671944"><i class="fas fa-phone"></i>&plus;32 473 67 19 44</a></p>
         </div>
         <div class="text-center">
           <p class="text-white"><a href="https://linkedin.com/in/michielve" target="_blank" class="hover:underline">Made

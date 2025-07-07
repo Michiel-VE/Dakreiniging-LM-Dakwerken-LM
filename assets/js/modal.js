@@ -1,14 +1,13 @@
-const serviceDataFiles = {
-  "Dakherstellingen": "dakherstellingen.json",
-  "Dakreiniging & Ontmossen": "dakreiniging.json",
-  "Onderhoud Platte Daken": "onderhoud-platte-daken.json"
+const serviceHtmlFiles = {
+  "Dakherstellingen - Hellende daken": "dakherstellingen_hellende_daken.html",
+  "Dakreiniging & Ontmossen": "dakreiniging_ontmossen.html",
+  "Dakherstellingen - Platte daken": "dakherstellingen_platte_daken.html"
 };
+
 
 const modal = document.getElementById("serviceModal");
 const modalTitle = document.getElementById("modalTitle");
 const modalDescription = document.getElementById("modalDescription");
-const modalServicesList = document.getElementById("modalServicesList");
-const modalExtraInfo = document.getElementById("modalExtraInfoList");
 
 const closeButtons = [
   document.getElementById("closeModal"),
@@ -18,57 +17,46 @@ const closeButtons = [
 let lastFocusedElement = null;
 
 function openModal(title) {
-  const filename = serviceDataFiles[title];
+  const filename = serviceHtmlFiles[title];
   const filePath = `assets/data/${filename}`;
 
   lastFocusedElement = document.activeElement;
 
   fetch(filePath)
     .then(response => {
-      if (!response.ok) throw new Error(`Failed to load ${filename}`);
-      return response.json();
+      if (!response.ok) throw new Error(`Kan ${filename} niet laden`);
+      return response.text();
     })
-    .then(data => {
-      modalTitle.textContent = data.title || title;
-      modalDescription.textContent = data.body || "";
-
-      modalServicesList.innerHTML = (data.services || [])
-        .map(item => `<li>${item}</li>`)
-        .join("");
-
-      modalExtraInfo.innerHTML = (data.extra_info || [])
-        .map(item => `<li>${item}</li>`)
-        .join("");
+    .then(html => {
+      modalTitle.textContent = title;
+      modalDescription.innerHTML = html;
 
       modal.setAttribute("aria-hidden", "false");
-      modal.classList.remove("opacity-0", "translate-y-0", "pointer-events-none");
+      modal.classList.remove("opacity-0", "translate-y-4", "pointer-events-none");
       modal.classList.add("opacity-100", "translate-y-0");
-
       document.body.style.overflow = "hidden";
 
       setTimeout(() => document.getElementById("closeModal").focus(), 100);
     })
     .catch(error => {
-        modalTitle.textContent = "";
-        modalDescription.textContent = "";
-        modalServicesList.innerHTML = "";
-        modalExtraInfo.innerHTML = "";
-        modal.querySelector('h3').classList.add('hidden');
+      modalTitle.textContent = "";
 
-        const errorMessage = `Er is een probleem opgetreden: ${error.message || 'Onbekende fout'}`;
-        modalDescription.innerHTML = `<p class="text-red-600 text-lg font-semibold">${errorMessage}</p>`;
-        
-        modalExtraInfo.innerHTML = `<li class="text-red-600 text-sm">Probeer het later opnieuw of neem contact op met de beheerder.</li>`;
+      modalDescription.innerHTML = `
+        <div class="text-red-700 bg-red-50 border border-red-200 rounded p-4">
+          <p class="text-lg font-semibold mb-2">Er is een fout opgetreden</p>
+          <p>${error.message || 'Onbekende fout. Probeer het later opnieuw.'}</p>
+        </div>
+      `;
 
-        modal.setAttribute("aria-hidden", "false");
-        modal.classList.remove("opacity-0", "translate-y-4", "pointer-events-none");
-        modal.classList.add("opacity-100", "translate-y-0");
+      modal.setAttribute("aria-hidden", "false");
+      modal.classList.remove("opacity-0", "translate-y-4", "pointer-events-none");
+      modal.classList.add("opacity-100", "translate-y-0");
+      document.body.style.overflow = "hidden";
 
-        document.body.style.overflow = "hidden";
+      setTimeout(() => document.getElementById("closeModal").focus(), 100);
+    });
+}
 
-        setTimeout(() => document.getElementById("closeModal").focus(), 100);
-      });
-    }
 
 function closeModal() {
   modal.classList.add("opacity-0", "translate-y-4", "pointer-events-none");
@@ -76,6 +64,10 @@ function closeModal() {
   modal.setAttribute("aria-hidden", "true");
 
   document.body.style.overflow = "auto";
+  document.getElementById("modalDescription")?.scrollIntoView({
+    behavior: "auto",
+    block: "start"
+  });
 
   if (lastFocusedElement) {
     lastFocusedElement.focus();
@@ -84,6 +76,7 @@ function closeModal() {
 
 document.querySelectorAll(".card").forEach(card => {
   const title = card.querySelector("h3").textContent.trim();
+
 
   card.setAttribute("tabindex", "0");
   card.setAttribute("role", "button");
