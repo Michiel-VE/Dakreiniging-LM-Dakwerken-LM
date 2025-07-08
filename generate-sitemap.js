@@ -7,7 +7,10 @@ async function generateSitemap() {
 
   const links = [
     { url: '/', changefreq: 'weekly', priority: 1.0, lastmod: today },
-    { url: '/privacy.html', changefreq: 'yearly', priority: 0.8, lastmod: today },
+    { url: '/privacy.html', changefreq: 'yearly', priority: 0.6, lastmod: today },
+    { url: '/diensten/dakherstellingen_hellende_daken.html', changefreq: 'yearly', priority: 0.8, lastmod: today },
+    { url: '/diensten/dakherstellingen_platte_daken.html', changefreq: 'yearly', priority: 0.8, lastmod: today },
+    { url: '/diensten/dakreiniging_ontmossen.html', changefreq: 'yearly', priority: 0.8, lastmod: today },
   ];
 
   const sitemapStream = new SitemapStream({ hostname: 'https://www.dakreiniginglm.be' });
