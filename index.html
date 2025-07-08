@@ -39,6 +39,8 @@
   <link rel="manifest" href="/assets/favicon/site.webmanifest" />
 
   <link rel="stylesheet" href="assets/css/output.css">
+  <link rel="stylesheet" href="/assets/js/bundle.css">
+
   <link rel="canonical" href="https://www.dakreiniginglm.be/">
 
   <title>Dakreiniging LM | Dakwerken in Herentals</title>
@@ -114,9 +116,11 @@
       <div class="absolute inset-0 bg-white/30 z-0"></div>
 
       <div id="carousel-reiniging"
-        class="absolute inset-0 z-[-2] bg-cover bg-top bg-fixed transition-opacity duration-1000 ease-in-out"></div>
+        class="absolute inset-0 z-[-2] transform scale-[1.1] bg-cover bg-top bg-fixed transition-opacity duration-1000 ease-in-out">
+      </div>
       <div id="carousel-herstelling"
-        class="absolute inset-0 z-[-1] bg-cover bg-top bg-fixed transition-opacity duration-1000 ease-in-out"></div>
+        class="absolute inset-0 z-[-1] transform scale-[1.1] bg-cover bg-top bg-fixed transition-opacity duration-1000 ease-in-out">
+      </div>
 
       <div class="relative h-full flex items-center justify-center px-6 sm:px-24 z-10">
         <div class="bg-white/60 backdrop-blur-sm p-6 sm:p-10 rounded-lg shadow-lg max-w-xl">
@@ -330,73 +334,110 @@
       <span id="toast-message"></span>
     </div>
 
-    <section id="recensies" class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 mb-16 pt-24">
+    <section id="recensies" class="container mx-auto py-16 px-4 sm:px-6 lg:px-16">
       <h2 class="text-4xl font-semibold text-center text-gray-800 mb-12">Recensies</h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="relative px-10 overflow-visible">
 
-        <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg">
-          <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Ruddy" alt="Ruddy Tienen"
-            class="w-24 h-24 rounded-full object-cover mb-4 ring-4 ring-purple-300">
-          <h3 class="text-xl font-medium text-gray-900 mb-2">Ruddy Tienen</h3>
-          <p class="text-gray-600 leading-relaxed">
-            Mijn goot en afvoerbuizen zaten verstopt en ik kreeg lekkages. Na het reinigen van mijn goten door
-            Dakreiniging LM kan het water terug vloeiend weg, en zijn de lekkages verleden tijd. Had ik dit maar vroeger
-            gedaan, nu heb ik een jaarcontract genomen en bellen de heren mij na dat de blaren zijn gevallen. Zeer
-            gemakkelijk en handig, minder zorgen voor mij. Heel blij met deze keuze!
-          </p>
+        <!-- Clips the slides -->
+        <div class="overflow-hidden pb-8 md:pb-12">
+          <!-- Slide container -->
+          <div id="customSlider" class="flex transition-transform duration-500 ease-in-out">
+            <!-- Ruddy -->
+            <div class="slide min-w-full md:min-w-1/2 lg:min-w-1/3 px-4">
+              <div class="bg-white rounded-xl shadow-lg p-8 text-center h-full flex flex-col">
+                <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Ruddy" alt="Ruddy Tienen"
+                  class="w-24 h-24 rounded-full mx-auto mb-4 ring-4 ring-purple-300" />
+                <h3 class="text-xl font-medium text-gray-900 mb-2">Ruddy Tienen</h3>
+                <p class="text-gray-600 leading-relaxed flex-grow">
+                  Mijn goot en afvoerbuizen zaten verstopt en ik kreeg lekkages. Na het reinigen van mijn goten door
+                  Dakreiniging LM kan het water terug vloeiend weg, en zijn de lekkages verleden tijd. Had ik dit maar
+                  vroeger gedaan, nu heb ik een jaarcontract genomen en bellen de heren mij na dat de blaren zijn
+                  gevallen. Zeer gemakkelijk en handig, minder zorgen voor mij. Heel blij met deze keuze!
+                </p>
+              </div>
+            </div>
+
+            <!-- Jos -->
+            <div class="slide min-w-full md:min-w-1/2 lg:min-w-1/3 px-4">
+              <div class="bg-white rounded-xl shadow-lg p-8 text-center h-full flex flex-col">
+                <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Jos" alt="Jos Rostelaar"
+                  class="w-24 h-24 rounded-full mx-auto mb-4 ring-4 ring-purple-300" />
+                <h3 class="text-xl font-medium text-gray-900 mb-2">Jos Rostelaar</h3>
+                <p class="text-gray-600 leading-relaxed flex-grow">
+                  De goot was aan vervanging toe, de familiebedrijf Dakreiniging LM hebben heel mooi werk geleverd en
+                  bovenal ik zit weer droog.
+                </p>
+              </div>
+            </div>
+
+            <!-- Ine -->
+            <div class="slide min-w-full md:min-w-1/2 lg:min-w-1/3 px-4">
+              <div class="bg-white rounded-xl shadow-lg p-8 text-center h-full flex flex-col">
+                <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Ine" alt="Ine Rostelaar"
+                  class="w-24 h-24 rounded-full mx-auto mb-4 ring-4 ring-purple-300" />
+                <h3 class="text-xl font-medium text-gray-900 mb-2">Ine Rostelaar</h3>
+                <p class="text-gray-600 leading-relaxed flex-grow">
+                  Mijn dak begon veel aanslag te krijgen en vol mospokken te staan. Dankzij hun diensten lijkt mijn dak
+                  weer als nieuw! Mijn man en ik zijn heel tevreden over het werk.
+                </p>
+              </div>
+            </div>
+
+            <!-- Jan -->
+            <div class="slide min-w-full md:min-w-1/2 lg:min-w-1/3 px-4">
+              <div class="bg-white rounded-xl shadow-lg p-8 text-center h-full flex flex-col">
+                <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Jan" alt="Jan Holsbeek"
+                  class="w-24 h-24 rounded-full mx-auto mb-4 ring-4 ring-purple-300" />
+                <h3 class="text-xl font-medium text-gray-900 mb-2">Jan Holsbeek</h3>
+                <p class="text-gray-600 leading-relaxed flex-grow">
+                  Mijn gevel zag groen en er kwam water infiltratie binnen. Dankzij de firma is het probleem opgelost.
+                  Zeer tevreden over hun diensten!
+                </p>
+              </div>
+            </div>
+
+            <!-- Els -->
+            <div class="slide min-w-full md:min-w-1/2 lg:min-w-1/3 px-4">
+              <div class="bg-white rounded-xl shadow-lg p-8 text-center h-full flex flex-col">
+                <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Els" alt="Els Bierbeek"
+                  class="w-24 h-24 rounded-full mx-auto mb-4 ring-4 ring-purple-300" />
+                <h3 class="text-xl font-medium text-gray-900 mb-2">Els Bierbeek</h3>
+                <p class="text-gray-600 leading-relaxed flex-grow">
+                  Het lood aan mijn schoorsteen was gescheurd. Dit had ik niet door, de heren hadden mij hier op attent
+                  gemaakt toen ze mijn goten kwamen reinigen. Ze hebben de lekkages voorkomen. Hier ben ik heel dankbaar
+                  voor!
+                </p>
+              </div>
+            </div>
+
+            <!-- Wouter -->
+            <div class="slide min-w-full md:min-w-1/2 lg:min-w-1/3 px-4">
+              <div class="bg-white rounded-xl shadow-lg p-8 text-center h-full flex flex-col">
+                <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Wouter" alt="Wouter Leuven"
+                  class="w-24 h-24 rounded-full mx-auto mb-4 ring-4 ring-purple-300" />
+                <h3 class="text-xl font-medium text-gray-900 mb-2">Wouter Leuven</h3>
+                <p class="text-gray-600 leading-relaxed flex-grow">
+                  De tussen goot van mijn dak lekte. De heren hebben dit op een zeer professionele en korte termijn
+                  opgelost. Ik raad ze zeker aan!
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <button id="prevSlide" aria-label="Previous Slide"
+            class="hidden md:block cursor-pointer absolute top-1/2 left-0 -translate-y-1/2 -translate-x-full bg-blue-100 hover:bg-blue-200 text-blue-800 p-3 rounded-full shadow-md z-20">
+            <i class="fas fa-caret-left"></i>
+          </button>
+          <button id="nextSlide" aria-label="Next Slide"
+            class="hidden md:block cursor-pointer absolute top-1/2 right-0 -translate-y-1/2 translate-x-full bg-blue-100 hover:bg-blue-200 text-blue-800 p-3 rounded-full shadow-md z-20">
+            <i class="fas fa-caret-right"></i>
+          </button>
         </div>
 
-        <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg">
-          <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Jos" alt="Jos Rostelaar"
-            class="w-24 h-24 rounded-full object-cover mb-4 ring-4 ring-purple-300">
-          <h3 class="text-xl font-medium text-gray-900 mb-2">Jos Rostelaar</h3>
-          <p class="text-gray-600 leading-relaxed">
-            De goot was aan vervanging toe, de familiebedrijf Dakreiniging LM hebben heel mooi werk geleverd en bovenal
-            ik zit weer droog.
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg">
-          <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Ine" alt="Ine Rostelaar"
-            class="w-24 h-24 rounded-full object-cover mb-4 ring-4 ring-purple-300">
-          <h3 class="text-xl font-medium text-gray-900 mb-2">Ine Rostelaar</h3>
-          <p class="text-gray-600 leading-relaxed">
-            Mijn dak begon veel aanslag te krijgen en vol mospokken te staan. Dankzij hun diensten lijkt mijn dak weer
-            als nieuw! Mijn man en ik zijn heel tevreden over het werk.
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg">
-          <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Jan" alt="Jan Holsbeek"
-            class="w-24 h-24 rounded-full object-cover mb-4 ring-4 ring-purple-300">
-          <h3 class="text-xl font-medium text-gray-900 mb-2">Jan Holsbeek</h3>
-          <p class="text-gray-600 leading-relaxed">
-            Mijn gevel zag groen en er kwam water infiltratie binnen. Dankzij de firma is het probleem opgelost. Zeer
-            tevreden over hun diensten!
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg">
-          <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Els" alt="Els Bierbeek"
-            class="w-24 h-24 rounded-full object-cover mb-4 ring-4 ring-purple-300">
-          <h3 class="text-xl font-medium text-gray-900 mb-2">Els Bierbeek</h3>
-          <p class="text-gray-600 leading-relaxed">
-            Het lood aan mijn schoorsteen was gescheurd. Dit had ik niet door de heren hadden mij hier op attent gemaakt
-            toen dat ze mijn goten kwamen reinigen. Ze hebben de lekkages voorkomen. Hier ben ik heel dankbaar voor!
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg">
-          <img src="https://placehold.co/100x100/A78BFA/ffffff?text=Wouter" alt="Wouter Leuven"
-            class="w-24 h-24 rounded-full object-cover mb-4 ring-4 ring-purple-300">
-          <h3 class="text-xl font-medium text-gray-900 mb-2">Wouter Leuven</h3>
-          <p class="text-gray-600 leading-relaxed">
-            De tussen goot van mijn dak lekte. De heren hebben dit op een zeer professionele en korte termijn opgelost.
-            Ik raad ze zeker aan!
-          </p>
-        </div>
-      </div>
+        <!-- Pagination -->
+        <div id="pagination" class="flex justify-center gap-4 mt-6"></div>
     </section>
   </main>
 
@@ -421,7 +462,7 @@
         </div>
         <div class="text-center">
           <h4 class="font-semibold mb-2">Contact</h4>
-          <p>info@dakreiniginglm.be</p>
+          <p class="mb-2">info@dakreiniginglm.be</p>
           <p><a href="tel:+32473671944"><i class="fas fa-phone"></i>&plus;32 473 67 19 44</a></p>
         </div>
         <div class="text-center">
@@ -433,25 +474,60 @@
   </footer>
   <script src="assets/js/bundle.js" defer></script>
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Dakherstellingen - Hellende daken",
+    "description": "Reparaties van daken, goten, schoorstenen en Velux-ramen op hellende daken, inclusief lekdetectie en stormschade herstel.",
+    "provider": {
       "@type": "LocalBusiness",
       "name": "Dakreiniging LM",
-      "image": "https://www.dakreiniginglm.be/assets/favicon/favicon-96x96.png",
-      "@id": "https://www.dakreiniginglm.be",
-      "url": "https://www.dakreiniginglm.be",
       "telephone": "+32 473 67 19 44",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Herentals",
-        "postalCode": "2200",
-        "addressCountry": "BE"
-      },
-      "email": "info@dakreiniginglm.be",
-      "priceRange": "€€",
-      "openingHours": "Mo-Fr 08:00-18:00"
-    }
-  </script>
+      "url": "https://www.dakreiniginglm.be"
+    },
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "Groot-Leuven"
+    },
+    "url": "https://www.dakreiniginglm.be/#diensten"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Dakherstellingen - Platte daken",
+    "description": "Onderhoud, inspectie, en herstel van lekken op platte daken, inclusief bitumen, EPDM en PVC daken, voor langdurige bescherming.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Dakreiniging LM",
+      "telephone": "+32 473 67 19 44",
+      "url": "https://www.dakreiniginglm.be"
+    },
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "Groot-Leuven"
+    },
+    "url": "https://www.dakreiniginglm.be/#diensten"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Dakreiniging & Ontmossen",
+    "description": "Professionele reiniging, ontmossen en coaten van hellende daken om mossen, algen en vuil te verwijderen en de levensduur van uw dak te verlengen.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Dakreiniging LM",
+      "telephone": "+32 473 67 19 44",
+      "url": "https://www.dakreiniginglm.be"
+    },
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "Groot-Leuven"
+    },
+    "url": "https://www.dakreiniginglm.be/#diensten"
+  }
+]
+</script>
 </body>
 
 </html>
