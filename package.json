@@ -12,7 +12,8 @@
   },
   "scripts": {
     "build-sitemap": "node generate-sitemap.js",
-    "minify": "npx esbuild assets/js/main.js --bundle --minify --outfile=assets/js/bundle.js",
+    "minify-main": "npx esbuild assets/js/main.js --bundle --minify --outfile=assets/js/bundle.js",
+    "minify": "npx esbuild assets/js/sub.js --bundle --minify --outfile=assets/js/bundle-sub.js",
     "css": "npx @tailwindcss/cli -i ./assets/css/input.css -o ./assets/css/output.css --watch"
   }
 }

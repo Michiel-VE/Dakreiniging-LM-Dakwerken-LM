@@ -10,7 +10,6 @@ import {
     faMagnifyingGlass,
     faWrench,
     faLeaf,
-    faStar,
     faCaretLeft,
     faCaretRight
 } from '@fortawesome/free-solid-svg-icons';
@@ -26,7 +25,6 @@ library.add(
     faMagnifyingGlass,
     faWrench,
     faLeaf,
-    faStar,
     faCaretLeft,
     faCaretRight
 );

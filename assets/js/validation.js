@@ -13,33 +13,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let valid = true;
 
+    const setError = (field, errorId, message) => {
+      const errorEl = document.getElementById(errorId);
+      errorEl.classList.remove('hidden');
+      errorEl.textContent = message;
+      field.setAttribute('aria-invalid', 'true');
+    };
+
+    const clearError = (field, errorId) => {
+      const errorEl = document.getElementById(errorId);
+      errorEl.classList.add('hidden');
+      errorEl.textContent = '';
+      field.setAttribute('aria-invalid', 'false');
+    };
+
     if (naam.value.trim() === "") {
-      document.getElementById('error-naam').classList.remove('hidden');
+      setError(naam, 'error-naam', 'Naam is verplicht.');
       valid = false;
     } else {
-      document.getElementById('error-naam').classList.add('hidden');
+      clearError(naam, 'error-naam');
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email.value.trim())) {
-      document.getElementById('error-email').classList.remove('hidden');
+      setError(email, 'error-email', 'Voer een geldig e-mailadres in.');
       valid = false;
     } else {
-      document.getElementById('error-email').classList.add('hidden');
+      clearError(email, 'error-email');
     }
 
     if (!dienst.value) {
-      document.getElementById('error-dienst').classList.remove('hidden');
+      setError(dienst, 'error-dienst', 'Selecteer een dienst.');
       valid = false;
     } else {
-      document.getElementById('error-dienst').classList.add('hidden');
+      clearError(dienst, 'error-dienst');
     }
 
     if (onderwerp.value.trim().length < 5) {
-      document.getElementById('error-onderwerp').classList.remove('hidden');
+      setError(onderwerp, 'error-onderwerp', 'Onderwerp moet minstens 5 tekens bevatten.');
       valid = false;
     } else {
-      document.getElementById('error-onderwerp').classList.add('hidden');
+      clearError(onderwerp, 'error-onderwerp');
     }
 
     if (!valid) {
@@ -48,8 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const formData = new FormData(form);
-    console.log(form.action);
-    
 
     fetch(form.action, {
       method: 'POST',
@@ -60,14 +72,16 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         if (data.success) {
           form.reset();
+          form.querySelectorAll('[aria-invalid]').forEach(el => el.setAttribute('aria-invalid', 'false'));
           showToast("Bedankt! Je aanvraag is verzonden.", "success");
         } else if (data.errors) {
-          // Show server-side validation errors
           for (const [key, message] of Object.entries(data.errors)) {
+            const field = document.getElementById(key);
             const errorEl = document.getElementById('error-' + key);
-            if (errorEl) {
+            if (field && errorEl) {
               errorEl.textContent = message;
               errorEl.classList.remove('hidden');
+              field.setAttribute('aria-invalid', 'true');
             }
           }
           showToast("Er zijn enkele fouten. Controleer je invoer.", "error");

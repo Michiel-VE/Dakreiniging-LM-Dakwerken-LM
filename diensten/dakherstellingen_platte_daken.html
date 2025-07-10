@@ -61,7 +61,7 @@
       <ul id="navMenu" role="menubar" aria-label="Hoofd navigatie"
         class="hidden md:flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0 absolute md:static top-full left-0 w-full md:w-auto bg-white md:bg-transparent px-6 md:px-0 py-6 md:py-0 text-blue-800 text-sm md:text-base font-medium transition-all duration-300 ease-in-out transform origin-top opacity-0 scale-95 md:opacity-100 md:scale-100">
         <li role="menuitem">
-          <a href="/#home" class="group relative inline-block pb-1">
+          <a href="/" class="group relative inline-block pb-1">
             <span class="group-hover:text-blue-900 transition">Home</span>
             <span
               class="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
@@ -107,9 +107,9 @@
   </nav>
 
   <main role="main">
-    <section class="relative bg-cover bg-center h-64 sm:h-80 md:h-96"
-      style="background-image: url('assets/img/diensten/plat_dak.webp');">
-      <div class="absolute inset-0 bg-blue-900/60 flex items-center justify-center">
+    <section class="relative bg-cover bg-top h-80 sm:h-80 md:h-96"
+      style="background-image: url('/assets/img/diensten/plat_dak.webp');">
+      <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white text-center drop-shadow-lg pt-24 md:pt-0">
           Platte Daken Herstellen & Onderhoud</h1>
       </div>
@@ -235,7 +235,11 @@
           <h4 class="font-bold text-lg">Dakwerken LM</h4>
           <h4 class="font-bold text-lg mb-2">Dakreiniging LM</h4>
           <p>&copy; 2025 Alle rechten voorbehouden</p>
-          <a href="privacy.html" class="underline hover:text-blue-200 transition">Privacy Policy</a>
+          <div class="flex flex-col md:flex-row md:gap-4 gap-2 items-center justify-center mt-4 md:mt-0">
+            <a href="/privacy.html" class="underline hover:text-blue-200 transition">Privacy Policy</a>
+            <a href="/algemene-voorwaarden.html" class="underline hover:text-blue-200 transition">Algemene
+              Voorwaarden</a>
+          </div>
         </div>
         <div class="text-center">
           <h4 class="font-semibold mb-2">Contact</h4>
@@ -249,7 +253,8 @@
       </div>
     </div>
   </footer>
-  <script src="/assets/js/bundle.js" defer></script>
+
+  <script src="/assets/js/bundle-sub.js" defer></script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
