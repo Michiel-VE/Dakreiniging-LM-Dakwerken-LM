@@ -1,10 +1,10 @@
 const images = [
     {
-        url: "assets/img/dak_reiniging.webp",
+        url: "assets/img/dak_reiniging.webp?v=20250713",
         position: "center top"
     },
     {
-        url: "assets/img/dak_herstelling.webp",
+        url: "assets/img/dak_herstelling.webp?v=20250713",
         position: "center center"
     }
 ];
