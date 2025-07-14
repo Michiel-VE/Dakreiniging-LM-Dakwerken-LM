@@ -13,6 +13,8 @@
   "scripts": {
     "build-sitemap": "node generate-sitemap.js",
     "minify-main": "npx esbuild assets/js/main.js --bundle --minify --outfile=assets/js/bundle.js",
+    "minify-icon": "npx esbuild assets/js/fontawesome.js --bundle --minify --outfile=assets/js/bundle-icon.js",
+    "minify-css": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify",
     "minify": "npx esbuild assets/js/sub.js --bundle --minify --outfile=assets/js/bundle-sub.js",
     "css": "npx @tailwindcss/cli -i ./assets/css/input.css -o ./assets/css/output.css --watch"
   }

@@ -19,6 +19,8 @@
         const pageCount = Math.ceil(totalSlides / perView);
         for (let i = 0; i < pageCount; i++) {
             const dot = document.createElement('button');
+            dot.setAttribute('aria-label', `Ga naar slide ${i + 1}`);
+            dot.setAttribute('aria-current', i === 0 ? 'true' : 'false');
             dot.classList.add(
                 'w-4', 'h-4', 'rounded-full', 'bg-blue-400', 'cursor-pointer',
                 'opacity-50', 'hover:opacity-80', 'transition-opacity'
@@ -37,6 +39,7 @@
         const dots = pagination.children;
         const activePage = Math.floor(currentIndex / perView);
         for (let i = 0; i < dots.length; i++) {
+            dots[i].setAttribute('aria-current', i === activePage ? 'true' : 'false');
             dots[i].classList.toggle('opacity-100', i === activePage);
             dots[i].classList.toggle('opacity-50', i !== activePage);
         }
