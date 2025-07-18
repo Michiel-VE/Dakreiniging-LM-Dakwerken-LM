@@ -11,7 +11,8 @@ import {
     faWrench,
     faLeaf,
     faCaretLeft,
-    faCaretRight
+    faCaretRight,
+    faCaretDown,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -26,7 +27,8 @@ library.add(
     faWrench,
     faLeaf,
     faCaretLeft,
-    faCaretRight
+    faCaretRight,
+    faCaretDown
 );
 
 dom.watch();

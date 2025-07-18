@@ -20,14 +20,14 @@
     content="Professionele onderhoudsdiensten en herstellingen voor platte daken (EPDM, roofing) in de regio Herentals en Leuven. Voorkom problemen met preventief onderhoud." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.dakreiniginglm.be/dakherstellingen-platte-daken.html" />
-  <meta property="og:image" content="https://www.dakreiniginglm.be/assets/dak.webp" />
+  <meta property="og:image" content="https://www.dakreiniginglm.be/assets/img/dak_herstelling.webp?v=20250718" />
   <meta property="og:site_name" content="Dakreiniging LM" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Platte Daken Herstellen & Onderhoud | Dakreiniging LM" />
   <meta name="twitter:description"
     content="Houd uw plat dak in topconditie met onze expertise. Specialist in herstellingen, reiniging en preventief onderhoud voor alle platdaktypes." />
-  <meta name="twitter:image" content="https://www.dakreiniginglm.be/assets/dak.webp" />
+  <meta name="twitter:image" content="https://www.dakreiniginglm.be/assets/img/dak_herstelling.webp?v=20250718" />
   <link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg" />
   <link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
@@ -35,7 +35,7 @@
   <meta name="apple-mobile-web-app-title" content="Dakreiniging-LM" />
   <link rel="manifest" href="/assets/favicon/site.webmanifest" />
 
-  <link rel="stylesheet" href="/assets/css/output.css?v=20250713">
+  <link rel="stylesheet" href="/assets/css/output.css?v=20250718">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y6ZMGVS5NW"></script>
   <script>
@@ -62,48 +62,74 @@
       <ul id="navMenu" role="menubar" aria-label="Hoofd navigatie"
         class="hidden md:flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0 absolute md:static top-full left-0 w-full md:w-auto bg-white md:bg-transparent px-6 md:px-0 py-6 md:py-0 text-blue-800 text-sm md:text-base font-medium transition-all duration-300 ease-in-out transform origin-top opacity-0 scale-95 md:opacity-100 md:scale-100">
         <li role="menuitem">
-          <a href="/" class="group relative inline-block pb-1">
+          <a href="/" class="group relative inline-block pb-1 w-full">
             <span class="group-hover:text-blue-900 transition">Home</span>
             <span
               class="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
           </a>
         </li>
         <li role="menuitem">
-          <a href="/#over-ons" class="group relative inline-block pb-1">
+          <a href="/#over-ons" class="group relative inline-block pb-1 w-full">
             <span class="group-hover:text-blue-900 transition">Wie zijn wij</span>
             <span
               class="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
           </a>
         </li>
-        <li role="menuitem">
-          <a href="/#diensten" class="group relative inline-block pb-1">
-            <span class="group-hover:text-blue-900 transition">Onze Diensten</span>
-            <span
-              class="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
-          </a>
+        <li role="menuitem" class="relative">
+          <button id="dienstenToggle" aria-haspopup="true" aria-expanded="false"
+            class="group relative inline-flex items-center focus:outline-none cursor-pointer">
+            <span class="transition relative pb-1">
+              Onze Diensten
+              <span
+                class="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"
+                aria-hidden="true"></span>
+            </span>
+            <icon id="dienstenIcon" class="fas fa-caret-down ml-2 pb-1 text-blue-800 transition-transform duration-300">
+            </icon>
+          </button>
+
+
+          <ul id="dienstenDropdown"
+            class="hidden md:absolute md:-left-12 mt-0 md:mt-2 bg-white md:border md:border-blue-200 md:w-68 z-40 space-y-1 text-sm text-blue-800 transition transform origin-top opacity-0 scale-95 md:rounded-md md:shadow-lg">
+            <li class="py-2 pl-2 md:pl-4 hover:bg-blue-50">
+              <a href="/diensten/dakherstellingen-hellende-daken.html" class="group relative inline-block pb-1 w-full">
+                <span class="group-hover:text-blue-900 transition">Dakherstellingen Hellende Daken</span>
+                <span
+                  class="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+            <li class="py-2 pl-2 md:pl-4 hover:bg-blue-50">
+              <a href="/diensten/dakherstellingen-platte-daken.html" class="group relative inline-block pb-1 w-full">
+                <span class="group-hover:text-blue-900 transition">Dakherstellingen Platte Daken</span>
+                <span
+                  class="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+            <li class="py-2 pl-2 md:pl-4 hover:bg-blue-50">
+              <a href="/diensten/dakreiniging-ontmossen.html" class="group relative inline-block pb-1 w-full">
+                <span class="group-hover:text-blue-900 transition">Dakreiniging & Ontmossen</span>
+                <span
+                  class="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+          </ul>
         </li>
         <li role="menuitem">
-          <a href="/#contact" class="group relative inline-block pb-1">
-            <span class="group-hover:text-blue-900 transition">Contact</span>
-            <span
-              class="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
-          </a>
-        </li>
-        <li role="menuitem">
-          <a href="/#recensies" class="group relative inline-block pb-1">
+          <a href="/#recensies" class="group relative inline-block pb-1 w-full">
             <span class="group-hover:text-blue-900 transition">Recensies</span>
             <span
               class="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
           </a>
         </li>
         <li role="menuitem">
-          <a href="/algemene-voorwaarden.html" class="group relative inline-block pb-1">
-            <span class="group-hover:text-blue-900 transition">Algemene Voorwaarden</span>
+          <a href="/#contact" class="group relative inline-block pb-1 w-full">
+            <span class="group-hover:text-blue-900 transition">Contact</span>
             <span
               class="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
           </a>
         </li>
       </ul>
+
     </div>
   </nav>
 
@@ -255,8 +281,8 @@
     </div>
   </footer>
 
-  <script src="/assets/js/bundle-icon.js?v=20250714" defer></script>
-  <script src="/assets/js/bundle-sub.js?v=20250714" defer></script>
+  <script src="/assets/js/bundle-icon.js?v=20250718" defer></script>
+  <script src="/assets/js/bundle-sub.js?v=20250718" defer></script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
