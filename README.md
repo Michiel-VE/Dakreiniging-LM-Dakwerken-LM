@@ -64,9 +64,11 @@ This website promotes roofing cleaning and repair services with:
    npm run css
    ```
 
-4. **Minify js**
+4. **Minify js bundle/css**
    ```bash
-   npm run minify
+   npm run minify-bundle_name
+   or
+   npm run minify-css
    ```
 
 5. **Build sitemap**
