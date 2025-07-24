@@ -5,9 +5,9 @@ const images = [
     positionMobile: "center right"
   },
   {
-    url: "assets/img/dak_herstelling.webp?v=20250722",
+    url: "assets/img/dak_herstelling.webp?v=20250722-v2",
     positionDesktop: "top center",
-    positionMobile: "top center"
+    positionMobile: "center center"
   }
 ];
 
