@@ -61,36 +61,41 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const formData = new FormData(form);
+    grecaptcha.ready(function() {
+      grecaptcha.execute('6LepJJsrAAAAAJd8sFU5DexBd0aQzQwHsMtzO5_U', { action: 'submit' }).then(function(token) {
+        const formData = new FormData(form);
+        formData.append('recaptcha_token', token);
 
-    fetch(form.action, {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          form.reset();
-          form.querySelectorAll('[aria-invalid]').forEach(el => el.setAttribute('aria-invalid', 'false'));
-          showToast("Bedankt! Je aanvraag is verzonden.", "success");
-        } else if (data.errors) {
-          for (const [key, message] of Object.entries(data.errors)) {
-            const field = document.getElementById(key);
-            const errorEl = document.getElementById('error-' + key);
-            if (field && errorEl) {
-              errorEl.textContent = message;
-              errorEl.classList.remove('hidden');
-              field.setAttribute('aria-invalid', 'true');
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            form.reset();
+            form.querySelectorAll('[aria-invalid]').forEach(el => el.setAttribute('aria-invalid', 'false'));
+            showToast("Bedankt! Je aanvraag is verzonden.", "success");
+          } else if (data.errors) {
+            for (const [key, message] of Object.entries(data.errors)) {
+              const field = document.getElementById(key);
+              const errorEl = document.getElementById('error-' + key);
+              if (field && errorEl) {
+                errorEl.textContent = message;
+                errorEl.classList.remove('hidden');
+                field.setAttribute('aria-invalid', 'true');
+              }
             }
+            showToast("Er zijn enkele fouten. Controleer je invoer.", "error");
+          } else {
+            showToast("Onbekende fout. Probeer opnieuw.", "error");
           }
-          showToast("Er zijn enkele fouten. Controleer je invoer.", "error");
-        } else {
-          showToast("Onbekende fout. Probeer opnieuw.", "error");
-        }
-      })
-      .catch(() => {
-        showToast("Verbindingsfout. Probeer het later opnieuw.", "error");
+        })
+        .catch(() => {
+          showToast("Verbindingsfout. Probeer het later opnieuw.", "error");
+        });
       });
+    });
   });
 });

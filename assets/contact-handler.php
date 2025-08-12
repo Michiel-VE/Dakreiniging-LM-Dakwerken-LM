@@ -1,6 +1,5 @@
 <?php
 require 'vendor/autoload.php';
-
 use \Mailjet\Resources;
 
 $env = parse_ini_file('../../.env');
@@ -10,14 +9,15 @@ header("Access-Control-Allow-Origin: https://dakreiniginglm.be");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 
-function sanitize($data) {
-    return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
-}
-
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['success' => false, 'errors' => ['global' => 'Invalid request method']]);
     exit;
+}
+
+// Function to sanitize input
+function sanitize($data) {
+    return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
 }
 
 if (!empty($_POST['website'])) {
@@ -30,8 +30,18 @@ $naam = sanitize($_POST['naam'] ?? '');
 $email = filter_var($_POST['email'] ?? '', FILTER_VALIDATE_EMAIL);
 $dienst = sanitize($_POST['dienst'] ?? '');
 $onderwerp = sanitize($_POST['onderwerp'] ?? '');
+$recaptchaToken = $_POST['recaptcha_token'] ?? ''; // Token from frontend
 
 $errors = [];
+
+// reCAPTCHA v3 verification
+$recaptchaSecret = $env['RECAPTCHA_SECRET_KEY'];  // From .env file
+$recaptchaResponse = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$recaptchaSecret&response=$recaptchaToken");
+$recaptchaData = json_decode($recaptchaResponse, true);
+
+if ($recaptchaData['success'] !== true || $recaptchaData['score'] < 0.65) {
+    $errors['recaptcha'] = 'reCAPTCHA validation failed. Please try again.';
+}
 
 if (!$naam) $errors['naam'] = 'Naam is verplicht.';
 if (!$email) $errors['email'] = 'Voer een geldig e-mailadres in.';
@@ -44,73 +54,32 @@ if (!empty($errors)) {
     exit;
 }
 
+// Function to load template and replace placeholders
+function loadTemplate($file, $data) {
+    $template = file_get_contents($file);
+    foreach ($data as $key => $value) {
+        $template = str_replace("{{" . $key . "}}", $value, $template);
+    }
+    return $template;
+}
 
-// Your templates (use HEREDOC syntax for readability)
-$adminTemplate = <<<HTML
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-  <meta charset="UTF-8" />
-  <style>
-    body { font-family: Arial, sans-serif; background-color: #f4f8fc; color: #333; padding: 20px; }
-    .container { background-color: #ffffff; border-left: 5px solid #007BFF; padding: 20px; max-width: 600px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
-    .header { border-bottom: 1px solid #e0e0e0; margin-bottom: 20px; }
-    h2 { color: #007BFF; margin: 0 0 10px; }
-    .info { margin-bottom: 15px; }
-    .label { font-weight: bold; color: #555; }
-    .value { margin-left: 5px; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <h2>Nieuw contactformulier ontvangen</h2>
-    </div>
-    <div class="info"><span class="label">Naam:</span><span class="value">{$naam}</span></div>
-    <div class="info"><span class="label">E-mailadres:</span><span class="value">{$email}</span></div>
-    <div class="info"><span class="label">Dienst:</span><span class="value">{$dienst}</span></div>
-    <div class="info"><span class="label">Vraag / Bericht:</span><br/><span class="value">{$onderwerp}</span></div>
-  </div>
-</body>
-</html>
-HTML;
+// Prepare the dynamic content for the templates
+$data = [
+    'naam' => $naam,
+    'email' => $email,
+    'dienst' => $dienst,
+    'onderwerp' => $onderwerp
+];
 
-$userTemplate = <<<HTML
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-  <meta charset="UTF-8" />
-  <style>
-    body { font-family: Arial, sans-serif; background-color: #eef5fd; color: #333; padding: 20px; }
-    .container { background-color: #ffffff; border-left: 5px solid #007BFF; padding: 20px; max-width: 600px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
-    h2 { color: #007BFF; }
-    p { line-height: 1.6; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h2>Bedankt voor je bericht, {$naam}!</h2>
-    <p>
-      We hebben je aanvraag goed ontvangen met betrekking tot <strong>{$dienst}</strong>.
-    </p>
-    <p>
-      We zullen zo spoedig mogelijk contact met je opnemen om je verder te helpen.
-    </p>
-    <p>
-      Met vriendelijke groet,<br/>
-      Het team van Dakreiniging LM | Dakwerken LM
-    </p>
-  </div>
-</body>
-</html>
-HTML;
+// Load the templates
+$adminTemplate = loadTemplate('templates/admin_template.html', $data);
+$userTemplate = loadTemplate('templates/user_template.html', $data);
 
-
+// Send email using Mailjet API
 $mj = new \Mailjet\Client($env['MAILJET_API_KEY'], $env['MAILJET_API_SECRET'], true, ['version' => 'v3.1']);
 
 $body = [
   'Messages' => [
-    // Admin email
     [
       'From' => [
         'Email' => "info@dakreiniginglm.be",
@@ -123,7 +92,6 @@ $body = [
       'HTMLPart' => $adminTemplate,
       'CustomID' => "ContactFormAdmin"
     ],
-    // User confirmation email
     [
       'From' => [
         'Email' => "info@dakreiniginglm.be",
@@ -146,5 +114,11 @@ if ($response->success()) {
     echo json_encode(['success' => true, 'message' => 'Bedankt! Je aanvraag is verzonden.']);
 } else {
     http_response_code(500);
-    echo json_encode(['success' => false, 'errors' => ['global' => 'Er is een fout opgetreden bij het verzenden van je bericht. Probeer het later opnieuw.']]);
+    echo json_encode([ 
+        'success' => false,
+        'errors' => [
+            'global' => 'Mailjet error: ' . $response->getStatus() . ' - ' . json_encode($response->getBody())
+        ]
+    ]);
 }
+?>
