@@ -86,40 +86,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const rawGsm = gsmField.value;
     const cleanedGsm = rawGsm.replace(/[\s\-\.]/g, '').trim();
     const gsmRegex = /^(?:\+32|0032)?0?(4[5-9]\d{7}|[1-9]\d{7})$/;
-    if (!gsmRegex.test(cleanedGsm)) {
-      setError(gsmField, 'error-gsm', 'Voer een geldig GSM-nummer in.');
-      valid = false;
-    } else {
-      clearError(gsmField, 'error-gsm');
-    }
 
-    if (straat.value.trim() === "") {
-      setError(straat, 'error-straat', 'Straat is verplicht.');
-      valid = false;
-    } else {
-      clearError(straat, 'error-straat');
-    }
-
-    if (nummer.value.trim() === "") {
-      setError(nummer, 'error-nummer', 'Nummer is verplicht.');
-      valid = false;
-    } else {
-      clearError(nummer, 'error-nummer');
+    if (cleanedGsm !== "") {
+      if (!gsmRegex.test(cleanedGsm)) {
+        setError(gsmField, 'error-gsm', 'Voer een geldig GSM-nummer in.');
+        valid = false;
+      } else {
+        clearError(gsmField, 'error-gsm');
+      }
     }
 
     const postcodeRegex = /^\d{4}$/;
-    if (!postcodeRegex.test(postcode.value.trim())) {
-      setError(postcode, 'error-postcode', 'Voer een geldige postcode in (4 cijfers).');
-      valid = false;
-    } else {
-      clearError(postcode, 'error-postcode');
-    }
-
-    if (gemeente.value.trim() === "") {
-      setError(gemeente, 'error-gemeente', 'Gemeente is verplicht.');
-      valid = false;
-    } else {
-      clearError(gemeente, 'error-gemeente');
+    if (postcode.value.trim() !== "") {
+      if (!postcodeRegex.test(postcode.value.trim())) {
+        setError(postcode, 'error-postcode', 'Voer een geldige postcode in (4 cijfers).');
+        valid = false;
+      } else {
+        clearError(postcode, 'error-postcode');
+      }
     }
 
     if (!dienst.value) {
