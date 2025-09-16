@@ -456,12 +456,16 @@
     </section>
 
     <!-- Contact -->
+    <!-- Contact -->
     <section id="contact" class="py-24 bg-white">
       <div class="max-w-3xl mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">Contacteer Ons voor Dakreiniging of Herstellingen
+        <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">
+          Contacteer Ons voor Dakreiniging of Herstellingen
         </h2>
+
         <form id="contactForm" action="/assets/contact-handler.php" method="POST"
           class="bg-white p-8 rounded-lg shadow-lg space-y-6" novalidate>
+
           <!-- Honeypot -->
           <div aria-hidden="true" class="absolute left-[-9999px]">
             <label for="website" class="sr-only">Laat dit veld leeg</label>
@@ -484,6 +488,54 @@
             <p class="text-sm text-red-600 mt-1 hidden" id="error-email">Voer een geldig e-mailadres in.</p>
           </div>
 
+          <!-- GSM Nummer -->
+          <div>
+            <label for="gsm" class="block text-blue-800 font-semibold">GSM Nummer</label>
+            <input type="tel" id="gsm" name="gsm" aria-describedby="error-gsm" aria-invalid="false"
+              pattern="^\+?\d{8,15}$" class="w-full border border-gray-300 p-3 rounded-lg mt-2"
+              placeholder="+32 471 23 45 67">
+            <p class="text-sm text-red-600 mt-1 hidden" id="error-gsm">Voer een geldig GSM-nummer in.</p>
+          </div>
+
+          <!-- Adres (1 unit, multiple fields) -->
+          <fieldset class="space-y-4">
+            <legend class="block text-blue-800 font-semibold mb-2">Adres</legend>
+
+            <!-- Straat + Nummer -->
+            <div class="flex flex-col md:flex-row md:space-x-4">
+              <div class="w-full md:w-2/3">
+                <label for="straat" class="block text-blue-800">Straat</label>
+                <input type="text" id="straat" name="straat" aria-describedby="error-straat"
+                  class="w-full border border-gray-300 p-3 rounded-lg mt-2">
+                <p class="text-sm text-red-600 mt-1 hidden" id="error-straat">Straat is verplicht.</p>
+              </div>
+              <div class="w-full md:w-1/3">
+                <label for="nummer" class="block text-blue-800">Nummer</label>
+                <input type="text" id="nummer" name="nummer" aria-describedby="error-nummer"
+                  class="w-full border border-gray-300 p-3 rounded-lg mt-2">
+                <p class="text-sm text-red-600 mt-1 hidden" id="error-nummer">Nummer is verplicht.</p>
+              </div>
+            </div>
+
+            <!-- Postcode + Gemeente -->
+            <div class="flex flex-col md:flex-row md:space-x-4">
+              <div class="w-full md:w-1/3">
+                <label for="postcode" class="block text-blue-800">Postcode</label>
+                <input type="text" id="postcode" name="postcode" maxlength="4" inputmode="numeric" pattern="\d{4}"
+                  aria-describedby="error-postcode"
+                  class="w-full border border-gray-300 p-3 rounded-lg mt-2 only-numbers">
+                <p class="text-sm text-red-600 mt-1 hidden" id="error-postcode">Voer een geldige postcode in.</p>
+              </div>
+
+              <div class="w-full md:w-2/3">
+                <label for="gemeente" class="block text-blue-800">Gemeente</label>
+                <input type="text" id="gemeente" name="gemeente" aria-describedby="error-gemeente"
+                  class="w-full border border-gray-300 p-3 rounded-lg mt-2">
+                <p class="text-sm text-red-600 mt-1 hidden" id="error-gemeente">Gemeente is verplicht.</p>
+              </div>
+            </div>
+          </fieldset>
+
           <!-- Dienst -->
           <div>
             <label for="dienst" class="block text-blue-800 font-semibold">Type dienst</label>
@@ -503,10 +555,10 @@
             <textarea id="onderwerp" name="onderwerp" rows="4" required aria-describedby="error-onderwerp"
               aria-invalid="false" class="w-full border border-gray-300 p-3 rounded-lg mt-2"></textarea>
             <p class="text-sm text-red-600 mt-1 hidden" id="error-onderwerp">Geef een korte beschrijving van uw
-              aanvraag.
-            </p>
+              aanvraag.</p>
           </div>
 
+          <!-- Submit -->
           <div class="flex justify-end">
             <button type="submit"
               class="bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition cursor-pointer">
@@ -558,8 +610,11 @@
       </div>
     </div>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/jsencrypt/bin/jsencrypt.min.js"></script>
+
   <script src="/assets/js/bundle-icon.js?v=20250718" defer></script>
-  <script src="/assets/js/bundle.js?v=20250811" defer></script>
+  <script src="/assets/js/bundle.js?v=20250903-2" defer></script>
 
   <script type="application/ld+json">
 [
