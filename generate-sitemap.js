@@ -13,7 +13,7 @@ async function generateSitemap() {
     { url: '/diensten/dakreiniging-ontmossen.html', changefreq: 'yearly', priority: 0.8, lastmod: today },
   ];
 
-  const sitemapStream = new SitemapStream({ hostname: 'https://www.dakreiniginglm.be' });
+  const sitemapStream = new SitemapStream({ hostname: 'https://dakherstellingenlm.be/' });
   const writeStream = createWriteStream(path.resolve(__dirname, 'sitemap.xml'));
 
   sitemapStream.pipe(writeStream);
